@@ -11,6 +11,13 @@ export class UserService {
 				.catch(() => reject(false));
 		});
 	}
+	public async getByName(name: string): Promise<User> {
+		return new Promise((resolve, reject) => {
+			this.userService.read(name)
+				.then((users) => resolve(users))
+				.catch(() => reject(false));
+		});
+	}
 	public async create(name: string): Promise<User> {
 		return new Promise((resolve, reject) => {
 			this.userService.create(name)
