@@ -17,4 +17,16 @@ export class UserRepository {
 				.catch(() => reject(false));
 		});
 	}
+	public async read(name: string): Promise<User> {
+		return new Promise((resolve, reject) => {
+			modelUser.findOne({name})
+				.then((user) => {
+					if (user) {
+						resolve(user);
+					}
+					resolve({name: ''});
+				})
+				.catch(() => reject(false));
+		});
+	}
 }   
