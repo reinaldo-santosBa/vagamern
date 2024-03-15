@@ -6,6 +6,12 @@ export class UserController {
 		const userServiceGet = await userService.get();
 		return response.status(200).json(userServiceGet);
 	}
+	async getByName(request: Request, response: Response): Promise<Response> {
+		const { name } = request.params;
+		const userService = new UserService();
+		const userServiceCreate = await userService.getByName(name);
+		return response.status(200).json(userServiceCreate);
+	}
 	async create(request: Request, response: Response): Promise<Response> {
 		const { name } = request.body;
 		const userService = new UserService();

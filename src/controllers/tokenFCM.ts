@@ -12,4 +12,16 @@ export class TokenFcmController {
 		const tokenFcmServiceCreate = await tokenFcmService.create(token);
 		return response.status(200).json(tokenFcmServiceCreate);
 	}
+	async sendNotifcation(request: Request, response: Response): Promise<Response> {
+		const { msg, title, token } = request.body;
+		const tokenFcmService = new TokenFcmService();
+		const tokenFcmServiceCreate = await tokenFcmService.sendNotification({ msg, title, token });
+		return response.status(200).json(tokenFcmServiceCreate);
+	}
+	async sendNotifcationAll(request: Request, response: Response): Promise<Response> {
+		const { msg, title } = request.body;
+		const tokenFcmService = new TokenFcmService();
+		const tokenFcmServiceCreate = await tokenFcmService.sendNotificationAll({ msg, title, token: '' });
+		return response.status(200).json(tokenFcmServiceCreate);
+	}
 }
